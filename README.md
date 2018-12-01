@@ -1,20 +1,18 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>")
-```
 # dowhen
 
-[![Build status](https://travis-ci.org/mkearney/dowhen.svg?branch=master)](https://travis-ci.org/mkearney/dowhen)
-[![CRAN status](https://www.r-pkg.org/badges/version/dowhen)](https://cran.r-project.org/package=dowhen)
-[![Coverage Status](https://codecov.io/gh/mkearney/dowhen/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/dowhen?branch=master)
+[![Build
+status](https://travis-ci.org/mkearney/dowhen.svg?branch=master)](https://travis-ci.org/mkearney/dowhen)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/dowhen)](https://cran.r-project.org/package=dowhen)
+[![Coverage
+Status](https://codecov.io/gh/mkearney/dowhen/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/dowhen?branch=master)
 
 <!--#![Downloads](https://cranlogs.r-pkg.org/badges/dowhen)
 #![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/dowhen)-->
+
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 > An R package for doing thing when something else happens
@@ -35,9 +33,10 @@ remotes::install_github("mkearney/dowhen")
 
 ## Example
 
-Keep checking every two minutes until a file appears and then perform expression
+Keep checking every two minutes until a file appears and then perform
+expression
 
-```{r, eval = FALSE}
+``` r
 ## when this file appears, do this expression
 d <- do_when_file(
   "~/Dropbox/pre-11-07.rds",
