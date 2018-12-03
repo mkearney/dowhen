@@ -31,25 +31,56 @@ if (!requireNamespace("remotes")) {
 remotes::install_github("mkearney/dowhen")
 ```
 
-## Example
+### Examples
 
-Keep checking every two minutes until a file appears and then perform
-expression
+#### `do_when()`
+
+**DO** something **WHEN** something else is true
 
 ``` r
-## when this file appears, do this expression
-d <- do_when_file(
-  "~/Dropbox/pre-11-07.rds",
-  ~ {
-    rt <- readRDS(.x)
-    d <- h.rtweet::lookup_all_tweets(rt$status_id)
-    saveRDS(d, "~/Dropbox/pre-11-07-data-dowhen.rds")
-    d
-  },
-  wait_time = 120
-)
-#> ↪ Waiting 120 seconds
-#> ↪ Waiting 120 seconds
-#> ↪ Waiting 120 seconds
-#> ✔ Found it!
+## wait 5 seconds between attempts
+do_when(rnorm(10), runif(1) > .5, .s = 5)
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ✔ It's time!
+#>  [1]  0.67520151  0.01426928  1.47067596  0.00560803  1.02074094
+#>  [6]  1.04324415  1.38571702  0.21097623  0.26727661 -0.83558820
+```
+
+#### `do_when_time()`
+
+**DO** something **WHEN** it’s a certain **TIME**
+
+``` r
+## set desired time to trigger something
+good_time <- Sys.time() + 8
+
+## wait 5 seconds between attempts
+do_when_time(rnorm(5), good_time, .s = 5)
+#> ↪ Waiting 5 seconds
+#> ↪ Waiting 5 seconds
+#> ✔ It's time!
+#> [1] -1.1685281 -0.9287931 -0.0946983 -2.1862568  1.6562308
+```
+
+#### `do_when_file()`
+
+**DO** something **WHEN** a certain **FILE** exists
+
+``` r
+## create "test" file
+cat("You read my file!", file = "test")
+
+## check for "test" file every minute
+do_when_file(tfse::readlines("test"), "test", .s = 60)
+#> ✔ It's time!
+#> [1] "You read my file!"
+
+## remove test file
+unlink("test")
 ```

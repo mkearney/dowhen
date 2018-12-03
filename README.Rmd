@@ -6,6 +6,7 @@ output: github_document
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>")
+library(dowhen)
 ```
 # dowhen
 
@@ -33,24 +34,40 @@ if (!requireNamespace("remotes")) {
 remotes::install_github("mkearney/dowhen")
 ```
 
-## Example
+### Examples
 
-Keep checking every two minutes until a file appears and then perform expression
+#### `do_when()`
 
-```{r, eval = FALSE}
-## when this file appears, do this expression
-d <- do_when_file(
-  "~/Dropbox/pre-11-07.rds",
-  ~ {
-    rt <- readRDS(.x)
-    d <- h.rtweet::lookup_all_tweets(rt$status_id)
-    saveRDS(d, "~/Dropbox/pre-11-07-data-dowhen.rds")
-    d
-  },
-  wait_time = 120
-)
-#> ↪ Waiting 120 seconds
-#> ↪ Waiting 120 seconds
-#> ↪ Waiting 120 seconds
-#> ✔ Found it!
+**DO** something **WHEN** something else is true
+
+```{r}
+## wait 5 seconds between attempts
+do_when(rnorm(10), runif(1) > .5, .s = 5)
+```
+
+#### `do_when_time()`
+
+**DO** something **WHEN** it's a certain **TIME**
+
+```{r}
+## set desired time to trigger something
+good_time <- Sys.time() + 8
+
+## wait 5 seconds between attempts
+do_when_time(rnorm(5), good_time, .s = 5)
+```
+
+#### `do_when_file()`
+
+**DO** something **WHEN** a certain **FILE** exists
+
+```{r}
+## create "test" file
+cat("You read my file!", file = "test")
+
+## check for "test" file every minute
+do_when_file(tfse::readlines("test"), "test", .s = 60)
+
+## remove test file
+unlink("test")
 ```
