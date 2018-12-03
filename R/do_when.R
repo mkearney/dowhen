@@ -43,14 +43,17 @@ do_when_ <- function(.d, .w, .s) {
       ## sleep message
       tfse::print_start("Waiting ", wait_time)
       ## sleep with interrupt condition
-      tryCatch(
+      zzz <- tryCatch(
         Sys.sleep(.s),
         interrupt = function(i) {
           tfse::print_complete("Interrupted!")
-          x <- NULL
-          break
+          return(FALSE)
         }
       )
+      if (!is.null(zzz)) {
+        x <- NULL
+        break
+      }
       next
     }
     tfse::print_complete("It's time!")
