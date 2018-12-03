@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dowhen
+# dowhen <img src="man/figures/logo.png" align="right" height=160/>
 
 [![Build
 status](https://travis-ci.org/mkearney/dowhen.svg?branch=master)](https://travis-ci.org/mkearney/dowhen)
@@ -39,17 +39,10 @@ remotes::install_github("mkearney/dowhen")
 
 ``` r
 ## wait 5 seconds between attempts
-do_when(rnorm(10), runif(1) > .5, .s = 5)
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
-#> ↪ Waiting 5 seconds
+do_when(rnorm(10), runif(1) > .25, .s = 5)
 #> ✔ It's time!
-#>  [1]  0.67520151  0.01426928  1.47067596  0.00560803  1.02074094
-#>  [6]  1.04324415  1.38571702  0.21097623  0.26727661 -0.83558820
+#>  [1] -1.14834822 -0.13355004 -0.00667972  0.78728776 -0.64064666
+#>  [6] -0.72742693  0.77617354  0.81115401  0.22888682 -0.04896746
 ```
 
 #### `do_when_time()`
@@ -65,7 +58,7 @@ do_when_time(rnorm(5), good_time, .s = 5)
 #> ↪ Waiting 5 seconds
 #> ↪ Waiting 5 seconds
 #> ✔ It's time!
-#> [1] -1.1685281 -0.9287931 -0.0946983 -2.1862568  1.6562308
+#> [1]  0.763136  0.599533 -0.691657 -0.836801  0.934215
 ```
 
 #### `do_when_file()`

@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>")
 library(dowhen)
 ```
-# dowhen
+# dowhen <img src="man/figures/logo.png" align="right" height=160/>
 
 [![Build status](https://travis-ci.org/mkearney/dowhen.svg?branch=master)](https://travis-ci.org/mkearney/dowhen)
 [![CRAN status](https://www.r-pkg.org/badges/version/dowhen)](https://cran.r-project.org/package=dowhen)
@@ -42,7 +42,7 @@ remotes::install_github("mkearney/dowhen")
 
 ```{r}
 ## wait 5 seconds between attempts
-do_when(rnorm(10), runif(1) > .5, .s = 5)
+do_when(rnorm(10), runif(1) > .25, .s = 5)
 ```
 
 #### `do_when_time()`
