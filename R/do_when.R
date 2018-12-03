@@ -45,7 +45,11 @@ do_when_ <- function(.d, .w, .s) {
       ## sleep with interrupt condition
       tryCatch(
         Sys.sleep(.s),
-        interrupt = function(i) tfse::print_complete("Interrupted!")
+        interrupt = function(i) {
+          tfse::print_complete("Interrupted!")
+          x <- NULL
+          break
+        }
       )
       next
     }
