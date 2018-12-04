@@ -13,4 +13,4 @@ do_when_file <- function(.d, file, .s = 60) {
   }
   do_when_(rlang::enquo(.d), rlang::quo(file.exists(file)), .s)
 }
-?do_when_time
+
